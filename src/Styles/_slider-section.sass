@@ -1,0 +1,79 @@
+.section-slider
+    padding-top: 0
+    padding-bottom: 0
+    border-top: 1px solid rgb(242, 242, 242)
+    border-bottom: 1px solid rgb(242, 242, 242)
+
+.banner
+    background-repeat: no-repeat
+    background-size: cover
+    background-position: center center
+    &__container
+        display: flex
+        &::after
+            content: ""
+            width: 120px
+            height: 2px
+            display: flex
+            position: absolute
+            top: 25%
+            left: 50%
+            transform: translate(-50%, -50%)
+            background: rgba($accent, 1)
+            z-index: 2
+    &__content, &__wrap
+        display: flex
+        flex: 1 1 50%
+        align-items: center
+        justify-content: center
+    &__image
+        display: flex
+        img
+            padding-top: 40px
+    .action-event
+        flex-direction: column
+        justify-content: center
+        align-items: flex-start
+        background: rgba($white, 1)
+        padding: 15px 20px
+        &::before
+            content: ""
+            left: -50%
+            width: 100%
+            height: 100%
+            top: 0
+            background: rgba($white, 1)
+            position: absolute
+            z-index: 1
+        *
+            z-index: 2
+        &__title
+            font-size: 36px
+            margin-top: 8px
+            margin-bottom: 12px
+            line-height: 40px
+        &__subtitle
+            font-size: 11px
+            text-transform: uppercase
+            margin-bottom: 8px
+            margin-top: 80px
+            color: rgba($greyDark, 1)
+        &__content
+            margin-top: 12px
+            margin-bottom: 15px
+            font-size: 15px
+        &__action
+            margin-top: 15px
+            margin-bottom: 80px
+            display: flex
+            .button:not(:first-child)
+                margin: 0 15px
+
+.banner-main
+    .banner__image
+        img
+            padding-top: 120px
+
+.main-page-slider
+    .slider__dots
+        left: 25%

@@ -1,0 +1,614 @@
+body::-webkit-scrollbar-track
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+	background-color: #F5F5F5
+
+body::-webkit-scrollbar
+	width: 8px
+	background-color: #F5F5F5
+
+body::-webkit-scrollbar-thumb
+	background-color: rgba($accent, 1)
+
+.button
+	border: none
+	outline: none
+	text-transform: uppercase
+	text-decoration: none
+	transition: .3s ease
+	color: rgba($greyDark, 1)
+	display: flex
+	align-items: center
+	appearance: none
+	border-radius: 3px
+	&:hover
+		color: rgba($accent, 1)
+		cursor: pointer
+	&__icon
+		margin-right: 10px
+		font-size: 16px
+
+.bordered-btn
+	border: 1px solid rgba($accent, 1)
+	padding: 8px 15px
+	background: rgba($white, 1)
+	font-size: 12px
+	color: rgba($accent, 1)
+	&:hover
+		color: rgba($white, 1)
+		background: rgba($accent, 1)
+
+.callback-btn
+	color: rgba($accent, 1)
+	background: transparent
+	font-size: 0.65em
+	&:hover
+		color: rgba($text, 1)
+
+a
+	text-decoration: none
+	color: rgba($text, 1)
+	&:visited, &:focus
+		color: rgba($text, 1)
+	&:hover
+		color: rgba($accent, 1)
+
+.dropdown
+	position: relative
+	&__head
+		position: relative
+		display: flex
+		align-items: center
+		padding: 4px
+		&:hover
+			cursor: pointer
+		&-text
+			color: rgba($text, 1)
+			padding: 0 5px
+			a:not(.button)
+				color: rgba($text, 1)
+				&:hover, &:visited, &:focus
+					color: rgba($text, 1)
+		&-icon
+			margin-right: 10px
+		&-dropdown-icon
+			font-size: 10px
+			margin-left: .15rem
+	&__wrap
+		width: auto
+		height: auto
+		min-width: 100%
+		position: absolute
+		top: 100%
+		right: 0
+		margin: 0 auto
+		transition: all .25s ease, opacity .3s
+		transform: scaleY(0)
+		opacity: 0
+		transform-origin: top
+		z-index: 6
+		.wrap-body
+			min-width: 100%
+			position: relative
+			width: max-content
+			content-visibility: auto
+			display: flex
+			align-items: flex-start
+			flex-direction: column
+			padding: 3px 0
+			box-shadow: 0 2px 10px 0 rgba(0,0,0,.2)
+			border-radius: 3px
+			background: rgba($white, 1)
+	&__element
+		padding: 5px 10px
+		&.active
+			+bold
+		&,.button
+			text-transform: none
+			font-size: 13px
+			display: flex
+			justify-content: flex-start
+
+
+.dropdown-active
+	//.dropdown__head
+	//.dropdown__wrap
+		// height: calc( 100% + 20px )
+
+.dropdown-noicon
+	.dropdown__head
+		&-icon
+			display: none
+
+.search
+	position: relative
+	&__input
+		outline: none
+		padding: 11px 44px 11px 16px
+		background: rgba($whiteFA, 1)
+		border: 1px solid rgba($greyEC, 1)
+		color: rgba($grey4, 1)
+		border-radius: 5px
+		font-size: .867em
+		width: 100%
+		height: 100%
+		&::placeholder
+			color: rgba($greyB8, 1)
+	&__button
+		position: absolute
+		right: 0
+		top: 0
+		height: 100%
+		background: transparent
+		padding-left: 15px
+		padding-right: 15px
+		color: rgba($greyDark, 1)
+		&:hover
+			color: rgba($text, 1)
+		&-icon
+			font-size: 17px
+
+.scroll-to-top
+	position: fixed
+	right: -200px
+	bottom: 30px
+	width: 44px
+	height: 44px
+	border-radius: 50%
+	cursor: pointer
+	z-index: 200
+	text-align: center
+	text-decoration: none
+	transition: all .3s ease, opacity 1.3s
+	background: rgba($accent, 1)
+	color: rgba($white, 1)
+	display: flex
+	justify-content: center
+	align-items: center
+	font-size: 18px
+	content-visibility: auto
+	&:visited, &:focus
+		color: rgba($white, 1)
+	&:hover
+		color: rgba($white, 1)
+		background: rgba($accentLight, 1)
+
+.selector
+	display: flex
+	align-items: center
+	padding: 3px
+	position: relative
+	outline: none
+	user-select: none
+	&:hover
+		cursor: pointer
+	&__head
+		display: flex
+		align-items: center
+	&__field
+		display: none
+	&__icon
+		font-size: 8px
+		margin-left: 5px
+	&__body
+		display: flex
+		flex-direction: column
+		width: max-content
+		position: relative
+		box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2)
+		max-width: 220px
+		content-visibility: auto
+	&__options
+		position: absolute
+		top: 100%
+		left: 0
+		right: 0
+		margin: 0 auto
+		z-index: 5
+		color: rgba($text, 1)
+		display: flex
+		flex-direction: column
+		align-items: center
+		transform-origin: top
+		transition: all .25s ease, opacity .3s
+		min-width: 100%
+		transform: scaleY(0)
+		z-index: 6
+		.option
+			padding: 2.5px 6.5px
+			display: flex
+			align-items: center
+			justify-content: center
+			background: rgba($white, 1)
+			content-visibility: auto
+			&:first-child
+				border-top-right-radius: 3px
+				border-top-left-radius: 3px
+			&:last-child
+				border-bottom-right-radius: 3px
+				border-bottom-left-radius: 3px
+		.option.selected
+			color: rgba($accent, 1)
+			+bold
+
+.count-block
+	&__row
+		display: flex
+		align-items: center
+	&__count
+		display: flex
+		align-items: center
+		justify-content: center
+		margin-left: 5px
+		padding: 3px
+		border-radius: 50%
+		background: rgba($accent, 1)
+		color: rgba($white, 1)
+		min-width: 18px
+		height: 18px
+		font-size: 10px
+	&__count-big
+		border-radius: 20%
+	&__icon
+		font-size: 16px
+	&__title
+		display: none
+
+.mobile-menu
+	padding: 5px 10px
+	&:hover
+		cursor: pointer
+	&__icon
+		font-size: 18px
+		display: flex
+		flex-direction: column
+	span
+		width: 20px
+		height: 2px
+		background: rgba($text, 1)
+		border-radius: 3px
+		&:nth-child(1), &:nth-child(2)
+			margin-bottom: .25rem
+
+.popup-container
+	width: 100%
+	height: 100vh
+	background: rgba(0,0,0,.45)
+	z-index: 210
+	position: fixed
+	left: 0
+	top: 0
+	opacity: 0
+	display: none
+	transition: opacity .2s ease
+	.popup-wrap
+		display: flex
+		justify-content: center
+		align-items: center
+		position: relative
+		width: 100%
+		height: 100vh
+
+.popup
+	// display: none
+	transition: all .3s ease, opacity 1s
+	transform: scale(0)
+	opacity: 0
+	border-radius: 5px
+	border: 0
+	outline: none
+
+
+.slider
+	position: relative
+	overflow: hidden
+	user-select: none
+	img
+		pointer-events: none
+	.slider__prev, .slider__next
+		position: absolute
+		top: 50%
+		transform: translateY(-50%)
+		z-index: 6
+		text-shadow: none
+		background: rgba($white, 1)
+		border-radius: 3px
+		border: none
+		outline: none
+		text-transform: uppercase
+		text-decoration: none
+		transition: .3s ease
+		color: rgba($text, 1)
+		display: flex
+		align-items: center
+		appearance: none
+		padding: 10px 15px
+		box-shadow: 0 0px 8px rgba(0, 0, 0, 0.136)
+		&:hover
+			background: rgba($accent, 1)
+			color: rgba($white, 1)
+			cursor: pointer
+	.slider__prev
+		left: 20px
+		&-icon
+			margin-left: -2px
+	.slider__next
+		right: 20px
+		&-icon
+			margin-right: -2px
+	.slider__prev.disabled, .slider__next.disabled
+		opacity: 0.45
+		pointer-events: none
+	&__container
+		position: relative
+		display: flex
+		transition: transform .5s
+		cursor: grab
+	&__dots
+		position: absolute
+		bottom: 40px
+		left: 50%
+		transform: translateX(-50%)
+		z-index: 6
+		display: flex
+		&-dot.active
+			background: rgba($accent, 1)
+		&-dot
+			width: 6px
+			height: 6px
+			padding: 4px
+			margin: 0 4px
+			border-radius: 50%
+			background: rgba($grey, 1)
+			transition: .3s ease
+			&:hover
+				cursor: pointer
+	.slider-row
+		width: 100%
+		min-width: 100%
+		z-index: 5
+		overflow: hidden
+		transition: all .5s
+		img
+			width: 100%
+			object-fit: contain
+
+.btn-accent
+	background: rgba($accent, 1)
+	color: rgba($white, 1)
+	padding: 8px 15px
+	&:hover, &:visited, &:focus
+		color: rgba($white, 1)
+
+.btn-catalog
+	font-size: 11px
+	padding: 8px 25px
+
+.filter
+	display: flex
+	&__btn, &__btn.button
+		color: rgba($grey7, 1)
+		text-transform: none
+		margin: 0 15px
+		font-size: 13px
+		position: relative
+		user-select: none
+		&:after
+			transition: all .3s ease
+			opacity: 0
+			content: ""
+			position: absolute
+			width: calc(100% + 4px)
+			height: 2px
+			background: rgba($white, 1)
+			bottom: 0
+			left: -2px
+		&:hover
+			color: rgba($black, 1)
+	&__btn.active
+		&:after
+			opacity: 1
+
+.catalog__items
+	padding: 25px 0
+
+.catalog
+	&__appendBtn
+		padding: 12px 17px
+		font-size: 10px
+		letter-spacing: 1.1px
+	&__actions
+		padding-top: 20px
+		display: flex
+		justify-content: center
+		align-items: center
+	.items__wrapper
+		justify-content: flex-start
+	.items
+		.item.product-item
+			flex: unset
+			padding: 0
+			width: 20%
+			margin: 0 0 -1px -1px
+			flex-direction: column
+	.product-item
+		position: relative
+		border: 1px solid rgba($greyEC, 1)
+		transition: box-shadow .2s , border .2s ease-out , transform .2s
+		text-align: left
+		&:hover
+			box-shadow: 0 0px 45px 5px rgba(221, 221, 221, 1)
+			transform: translateY(-1px)
+			border-color: rgba($white, 1)
+			.icons-block
+				&__item
+					opacity: 1
+			.item__buttons
+				display: flex
+
+		.icons-block, .actions-top
+			position: absolute
+			top: 0
+			display: flex
+			z-index: 2
+			margin-top: 15px
+			height: auto
+		.icons-block
+			right: 0
+			width: auto
+			flex-direction: column
+			align-items: flex-end
+			padding-left: 10px
+			padding-bottom: 10px
+			transition: right .3s ease, opacity .8s ease-out
+			&__item
+				margin: 0 0 4px
+				font-size: 16px
+				padding: 6px 7px
+				background: rgba($white, 1)
+				transition: .3s ease
+				opacity: 0
+				i, svg
+					width: 16px
+					height: 16px
+				svg
+					fill: rgba($greyDark, 1)
+				&:hover
+					background: rgba($accent, 1)
+					color: rgba($white, 1)
+					svg
+						path
+							fill: rgba($white, 1)
+		.actions-top
+			left: 0
+			width: auto
+			max-width: 75%
+			flex-wrap: wrap
+			&__action
+				padding: 4px 6px
+				margin-right: 5px
+				margin-bottom: 5px
+				letter-spacing: normal
+				font-size: 12px
+				line-height: 14px
+				background: rgba($blue, 1)
+				color: rgba($white, 1)
+				border-radius: 2px
+		.item__image-wapper, .item__content
+			position: relative
+			display: flex
+			width: 100%
+			height: 100%
+		.item__content
+			flex-direction: column
+			padding: 0 15px
+		.item__thumb
+			display: flex
+			height: 290px
+			width: 100%
+			position: relative
+			padding: 15px 0
+			.image-selector
+				position: absolute
+				top: 0
+				left: 0
+				width: 100%
+				height: 100%
+				display: flex
+				&__item-nav
+					display: flex
+					position: relative
+					width: 100%
+					&::after
+						content: ""
+						position: absolute
+						bottom: 0
+						left: 2px
+						display: block
+						width: calc(100% - 4px)
+						height: 1px
+						background: #cdcdcd
+				&__item
+					width: 100%
+					height: 100%
+					display: flex
+					flex-grow: 1
+					img
+						width: 100%
+						height: 100%
+						object-fit: cover
+						position: absolute
+						margin: auto
+						top: 0
+						bottom: 0
+						left: 0
+						right: 0
+						border: 0
+						vertical-align: middle
+						max-width: 100%
+						max-height: 100%
+						pointer-events: none
+						opacity: 0
+						padding: 10px 0
+						transition: opacity .5s ease
+				&__item.active
+					.image-selector__item-nav
+						&::after
+							background: rgba($white, 1)
+					img
+						opacity: 1
+		.item__info
+			margin-top: 20px
+			margin-bottom: 20px
+			.info-rating
+				display: flex
+				align-items: center
+				font-size: 12px
+				line-height: 16px
+				&__wrapper
+					display: flex
+				&__item
+					color: rgba($grey, 1)
+					&:not(:last-child)
+						margin-right: 3px
+				&__item.filled
+					color: rgba($gold, 1)
+				&__count
+					font-size: 13px
+					margin-left: 10px
+			.item__title
+				font-size: 14px
+				line-height: 18px
+				&-link
+					text-transform: unset
+					+normal
+			.item__art
+				margin-bottom: 10px
+				display: flex
+				text-align: left
+				span
+					font-size: 12px
+					line-height: 12px
+					color: rgba($greyDark, 1)
+			.price
+				display: flex
+				+bold
+				font-size: 16px
+				line-height: 20px
+				&__currency
+					margin-left: 5px
+		.item__buttons
+			display: none
+			width: 100%
+			position: absolute
+			left: 0
+			top: 100%
+			&-element
+				flex: 1 1 auto
+			.button
+				border-top-right-radius: 0
+				border-top-left-radius: 0
+				justify-content: center
+				font-size: 11px
+				line-height: normal
+				letter-spacing: 1.05px
+				padding: 15px 20px

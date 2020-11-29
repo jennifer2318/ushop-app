@@ -1,0 +1,45 @@
+.popular-categories-section
+    padding-top: 80px
+    padding-bottom: 60px
+
+.categories-items
+    .items__wrapper
+        justify-content: flex-start
+        align-items: stretch
+        .item
+            border: 1px solid rgba($greyEC, 1)
+            transition: box-shadow .2s , border .2s ease-out , transform .2s
+            width: 33.3333333%
+            flex: unset
+            margin: 0 0 -1px -1px
+            padding: 25px 30px
+            text-align: left
+            justify-content: flex-start
+            align-items: flex-start
+            &:hover
+                box-shadow: 0 10px 20px 0 rgba(0,0,0,.1)
+                transform: translateY(-1px)
+                border-color: rgba($white, 1)
+            &__icon
+                margin: 0
+                margin-right: 25px
+                min-height: 80px
+            &__content
+                display: flex
+                flex-direction: column
+            &__title
+                margin-top: 0
+                margin-bottom: 5px
+                line-height: 19px
+            &__description
+                display: flex
+                flex-wrap: wrap
+                &-item
+                    display: flex
+                    color: rgba($greyDark, 1)
+                    text-transform: none
+                    &:hover
+                        color: rgba($accent, 1)
+                    .separator
+                        color: rgba($greyDark, 1)
+                        margin: 0 7px
