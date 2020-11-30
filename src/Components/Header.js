@@ -25,10 +25,10 @@ class Header extends Component {
                                     <div className="currency-block__selector selector" tabIndex="-1">
                                         <div className="selector__head">
                                             <input className="selector__field" type="text" name="select-currency"/>
-                                                <div className="selector__active">
+                                            <div className="selector__active">
                                                     RUB
-                                                </div>
-                                                <i className="fas fa-caret-down selector__icon"/>
+                                            </div>
+                                            <i className="fas fa-caret-down selector__icon"/>
                                         </div>
                                         <div className="selector__options">
                                             <div className="selector__body">
@@ -43,10 +43,10 @@ class Header extends Component {
                                     <div className="region-block__selector selector" tabIndex="-1">
                                         <div className="selector__head">
                                             <input className="selector__field" type="text" name="select-currency"/>
-                                                <div className="selector__active">
+                                            <div className="selector__active">
                                                     Русский
-                                                </div>
-                                                <i className="fas fa-caret-down selector__icon"/>
+                                            </div>
+                                            <i className="fas fa-caret-down selector__icon"/>
                                         </div>
                                         <div className="selector__options">
                                             <div className="selector__body">
@@ -66,7 +66,7 @@ class Header extends Component {
                                 <div className="logo-block__logo">
                                     <a href="/">
                                         <img className="lazy" data-srcset="img/logo.svg" data-src="img/logo.svg"
-                                             alt="UShop" draggable="false"/>
+                                            alt="UShop" draggable="false"/>
                                     </a>
                                 </div>
                             </div>
@@ -74,9 +74,9 @@ class Header extends Component {
                             <div className="header__search-block search-block blocks">
                                 <div className="search__block-search search">
                                     <input className="search__input" type="text" name="search" placeholder="Поиск"/>
-                                        <button className="search__button button" type="button">
-                                            <i className="far fa-search search__button-icon"/>
-                                        </button>
+                                    <button className="search__button button" type="button">
+                                        <i className="far fa-search search__button-icon"/>
+                                    </button>
                                 </div>
                             </div>
 
@@ -111,12 +111,12 @@ class Header extends Component {
 
                                         <div className="dropdown dropdown-noicon">
                                             <div className="dropdown__head">
-                                            <span className="dropdown__head-text">
-                                                <a href="#" className="button">
-                                                    <i className="fal fa-user button__icon user-action__icon"/>
-                                                    <span className="user-action__name">мой кабинет</span>
-                                                </a>
-                                            </span>
+                                                <span className="dropdown__head-text">
+                                                    <a href="#" className="button">
+                                                        <i className="fal fa-user button__icon user-action__icon"/>
+                                                        <span className="user-action__name">мой кабинет</span>
+                                                    </a>
+                                                </span>
                                                 <i className="fas fa-caret-down dropdown__head-dropdown-icon"/>
                                             </div>
                                             <div className="dropdown__wrap">
@@ -182,7 +182,7 @@ class Header extends Component {
                                     <div className="logo-block__logo">
                                         <a href="/">
                                             <img className="lazy" data-src="img/logo.svg" data-srcset="img/logo.svg"
-                                                 alt="UShop" draggable="false" />
+                                                alt="UShop" draggable="false" />
                                         </a>
                                     </div>
                                 </div>
@@ -190,9 +190,9 @@ class Header extends Component {
                                 <div className="header__search-block search-block blocks">
                                     <div className="search__block-search search">
                                         <input className="search__input" type="text" name="search" placeholder="Поиск"/>
-                                            <button className="search__button button" type="button">
-                                                <i className="far fa-search search__button-icon"/>
-                                            </button>
+                                        <button className="search__button button" type="button">
+                                            <i className="far fa-search search__button-icon"/>
+                                        </button>
                                     </div>
                                 </div>
 
@@ -227,11 +227,11 @@ class Header extends Component {
 
                                             <div className="dropdown dropdown-noicon">
                                                 <div className="dropdown__head">
-                                                <span className="dropdown__head-text">
-                                                    <a href="#" className="button" title="Мой кабинет">
-                                                        <i className="fal fa-user button__icon user-action__icon"/>
-                                                    </a>
-                                                </span>
+                                                    <span className="dropdown__head-text">
+                                                        <a href="#" className="button" title="Мой кабинет">
+                                                            <i className="fal fa-user button__icon user-action__icon"/>
+                                                        </a>
+                                                    </span>
                                                     <i className="fas fa-caret-down dropdown__head-dropdown-icon"/>
                                                 </div>
 
