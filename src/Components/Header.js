@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from "./Icon";
 import Selector from "./Selector";
 import CountBlock from "./CountBlock";
+import Field from "./Field";
 
 class Header extends Component {
     constructor(props) {
@@ -59,12 +60,10 @@ class Header extends Component {
                             </div>
 
                             <div className="header__search-block search-block blocks">
-                                <div className="search__block-search search">
-                                    <input className="search__input" type="text" name="search" placeholder="Поиск"/>
+                                <Field type={'search'} className={'search__block-search'} placeholder={'Поиск'} onChange={(v) => console.log(v)} id={'search'} value={''} name={'search'} btn={
                                     <button className="search__button button" type="button">
-                                        <Icon iconName={'far fa-search'} className={'search__button-icon'} />
-                                    </button>
-                                </div>
+                                        <Icon className={'search__button-icon'} iconName={'far fa-search'} />
+                                    </button>} />
                             </div>
 
                             <CountBlock value={poll} name={'Сравнение'} className={'header__count-block'} icon={<Icon iconName={'fal fa-poll'} className={'count-block__icon'} />} />
@@ -155,12 +154,10 @@ class Header extends Component {
                                 </div>
 
                                 <div className="header__search-block search-block blocks">
-                                    <div className="search__block-search search">
-                                        <input className="search__input" type="text" name="search" placeholder="Поиск"/>
+                                    <Field type={'search'} className={'search__block-search'} placeholder={'Поиск'} onChange={(v) => console.log(v)} id={'search'} value={''} name={'search'} btn={
                                         <button className="search__button button" type="button">
-                                            <Icon iconName={'far fa-search'} className={'search__button-icon'} />
-                                        </button>
-                                    </div>
+                                            <Icon className={'search__button-icon'} iconName={'far fa-search'} />
+                                        </button>} />
                                 </div>
 
                                 <CountBlock value={poll} name={'Сравнение'} className={'header__count-block'} icon={<Icon iconName={'fal fa-poll'} className={'count-block__icon'} />} />
