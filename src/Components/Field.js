@@ -21,49 +21,65 @@ class Field extends Component {
         };
     }
 
-    changeHandler = e => {
-        const {locked} = this.state;
-        const {type, onChange, name} = this.props;
-        const {target} = e;
-        const targetValue = target.value;
+    componentDidMount() {
+        const {value} = this.state;
 
+        this.setValue(value);
+    }
+
+    changeHandler = e => {
+        const {target} = e;
+        const value = target.value;
+
+        this.setValue(value);
+    };
+
+    setValue = value => {
+        const {locked} = this.state;
+        const {onChange, name} = this.props;
+
+        const {err, valid} = this.validateField(value);
+
+        if (!locked) {
+            this.setState({
+                value,
+                err,
+                valid
+            });
+            if (valid || !value) {
+                onChange({name: name, value});
+            }
+        }
+    };
+
+    validateField = value => {
+        const {type} = this.props;
         let validator = {valid: true, err: ''};
 
         switch (type) {
         case 'text': {
-            validator = validateString(targetValue);
+            validator = validateString(value);
             break;
         }
         case 'password': {
-            validator = validatePassword(targetValue);
+            validator = validatePassword(value);
             break;
         }
         case 'email': {
-            validator = validateEmail(targetValue);
+            validator = validateEmail(value);
             break;
         }
         case 'tel': {
-            validator = validateInternationalPhone(targetValue);
+            validator = validateInternationalPhone(value);
             break;
         }
         case 'number': {
-            validator = validateNumber(targetValue);
+            validator = validateNumber(value);
             break;
         }
         }
 
-        const {err, valid} = validator;
-
-        if (!locked) {
-            this.setState({
-                value: targetValue,
-                err,
-                valid
-            });
-            if (valid || !targetValue) {
-                onChange({name: name, value: targetValue});
-            }
-        }
+        return validator;
     };
 
     render() {
