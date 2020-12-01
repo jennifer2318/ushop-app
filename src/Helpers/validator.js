@@ -1,7 +1,24 @@
+export const isEmpty = (value) => {
+    if (value === '' || value === null) return {valid: false, err: `Заполните поле`};
+
+    return {valid: true, err: ''};
+};
+
 export const validateString = (value, minLen = 1, maxLen = 255) => {
-    if (value === '') return {valid: false, err: `Заполните поле`};
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     if (value.length < minLen) return {valid: false, err: `Минимальная длина поля ${minLen} символов`};
     if (value.length > maxLen) return {valid: false, err: `Максимальная длина поля ${maxLen} символов`};
+
+    return {valid: true, err: ''};
+};
+
+export const validateNumber = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
+    if (!isNaN(value)) return {valid: false, err: `Введите число`};
 
     return {valid: true, err: ''};
 };
@@ -41,6 +58,9 @@ export const validatePassword = (value) => {
 };
 
 export const validateHttpsURL = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#()?&//=]*)/;
 
     if (!pattern.test(value)) return {valid: false, err: `Неверная ссылка, протокол ссылки должен содержать https`};
@@ -49,6 +69,9 @@ export const validateHttpsURL = (value) => {
 };
 
 export const validateHttpURL = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /http?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#()?&//=]*)/;
 
     if (!pattern.test(value)) return {valid: false, err: `Неверная ссылка, протокол ссылки должен содержать http`};
@@ -57,6 +80,9 @@ export const validateHttpURL = (value) => {
 };
 
 export const validateOptionalURL = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
     if (!pattern.test(value)) return {valid: false, err: `Неверная ссылка`};
@@ -65,6 +91,9 @@ export const validateOptionalURL = (value) => {
 };
 
 export const validateIPv4 = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/;
 
     if (!pattern.test(value)) return {valid: false, err: `Неверный IPv4 адрес`};
@@ -73,6 +102,9 @@ export const validateIPv4 = (value) => {
 };
 
 export const validateIPv6 = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))/;
 
     if (!pattern.test(value)) return {valid: false, err: `Неверный IPv6 адрес`};
@@ -81,6 +113,9 @@ export const validateIPv6 = (value) => {
 };
 
 export const validateIPv4IPv6 = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /((^\s*((([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))\s*$)|(^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$))/;
 
     if (!pattern.test(value)) return {valid: false, err: `Адрес должен быть IPv4 или IPv6`};
@@ -89,6 +124,9 @@ export const validateIPv4IPv6 = (value) => {
 };
 
 export const validateDateYMD = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/; // Date Format YYYY-MM-dd
 
     if (!pattern.test(value)) return {valid: false, err: `Дата должна быть введена в формате YYYY-MM-dd используя разделитель -`};
@@ -97,6 +135,9 @@ export const validateDateYMD = (value) => {
 };
 
 export const validateDateDMY = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     /* Date Format dd-MM-YYYY or
                dd.MM.YYYY or
                dd/MM/YYYY
@@ -109,6 +150,9 @@ export const validateDateDMY = (value) => {
 };
 
 export const validateDateDMlongY = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     /* Date Format dd-mmm-YYYY or
                dd/mmm/YYYY or
                dd.mmm.YYYY */
@@ -120,6 +164,9 @@ export const validateDateDMlongY = (value) => {
 };
 
 export const validateTimeHM12 = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/; // Time Format HH:MM 12-hour, optional leading 0
 
     if (!pattern.test(value)) return {valid: false, err: `Время должно быть введено в формате HH:MM 12-hour`};
@@ -128,6 +175,9 @@ export const validateTimeHM12 = (value) => {
 };
 
 export const validateTimeHM12AMPM = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^(0?[1-9]|1[0-2]):[0-5][0-9]$/; // Time Format HH:MM 12-hour, optional leading 0, Meridiems (AM/PM)
 
     if (!pattern.test(value)) return {valid: false, err: `Время должно быть введено в формате HH:MM 12-hour AM/PM`};
@@ -136,6 +186,9 @@ export const validateTimeHM12AMPM = (value) => {
 };
 
 export const validateTimeHM24 = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/; // Time Format HH:MM 24-hour, optional leading 0
 
     if (!pattern.test(value)) return {valid: false, err: `Время должно быть введено в формате HH:MM 24-hour`};
@@ -144,6 +197,9 @@ export const validateTimeHM24 = (value) => {
 };
 
 export const validateTimeHMS24 = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)/; // Time Format HH:MM:SS 24-hour
 
     if (!pattern.test(value)) return {valid: false, err: `Время должно быть введено в формате HH:MM:SS 24-hour`};
@@ -152,6 +208,9 @@ export const validateTimeHMS24 = (value) => {
 };
 
 export const validateHTMLTag = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /<\/?[\w\s]*>|<.+[\W]>/; // Time Format HH:MM:SS 24-hour
 
     if (!pattern.test(value)) return {valid: false, err: `Не является html тегом`};
@@ -160,6 +219,9 @@ export const validateHTMLTag = (value) => {
 };
 
 export const validateInternationalPhone = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/;
 
     if (!pattern.test(value)) return {valid: false, err: `Неверный формат телефона`};
@@ -168,6 +230,9 @@ export const validateInternationalPhone = (value) => {
 };
 
 export const validateVisaCard = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^4[0-9]{12}(?:[0-9]{3})?$/; // All Visa card numbers start with a 4. New cards have 16 digits. Old cards have 13.
 
     if (!pattern.test(value)) return {valid: false, err: `Неверный номер карты`};
@@ -176,6 +241,9 @@ export const validateVisaCard = (value) => {
 };
 
 export const validateMasterCard = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$/; // MasterCard numbers either start with the numbers 51 through 55 or with the numbers 2221 through 2720. All have 16 digits.
 
     if (!pattern.test(value)) return {valid: false, err: `Неверный номер карты`};
@@ -184,6 +252,9 @@ export const validateMasterCard = (value) => {
 };
 
 export const validateAmericanExpressCard = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     const pattern = /^3[47][0-9]{13}$/; // American Express card numbers start with 34 or 37 and have 15 digits.
 
     if (!pattern.test(value)) return {valid: false, err: `Неверный номер карты`};
@@ -192,6 +263,9 @@ export const validateAmericanExpressCard = (value) => {
 };
 
 export const validateDinersClubCard = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     /*
         Diners Club card numbers begin with 300 through 305, 36 or 38. All have 14 digits. There are Diners Club cards that begin with 5 and have 16 digits.
         These are a joint venture between Diners Club and MasterCard, and should be processed like a MasterCard.
@@ -204,6 +278,9 @@ export const validateDinersClubCard = (value) => {
 };
 
 export const validateDiscoverCard = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     /*
         Discover card numbers begin with 6011 or 65. All have 16 digits.
      */
@@ -215,6 +292,9 @@ export const validateDiscoverCard = (value) => {
 };
 
 export const validateJCBCard = (value) => {
+    const validator = isEmpty(value);
+    if (validator.valid === false) return validator;
+
     /*
         JCB cards beginning with 2131 or 1800 have 15 digits. JCB cards beginning with 35 have 16 digits.
      */
