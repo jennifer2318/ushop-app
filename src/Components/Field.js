@@ -61,6 +61,10 @@ class Field extends Component {
             validator = validateString(value);
             break;
         }
+        case 'search': {
+            validator = validateString(value);
+            break;
+        }
         case 'password': {
             validator = validatePassword(value);
             break;
