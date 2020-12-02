@@ -4,6 +4,8 @@ import Icon from "./Icon";
 import Selector from "./Selector";
 import CountBlock from "./CountBlock";
 import Field from "./Field";
+import {Link} from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 class Header extends Component {
     constructor(props) {
@@ -14,8 +16,25 @@ class Header extends Component {
             like: 200,
             poll: 0,
         };
+
+        this.headerFixed = React.createRef();
     }
 
+    scrollHandler = e => {
+        if (window.scrollY >= 300) {
+            this.headerFixed.current.style.top = 0;
+        }else {
+            this.headerFixed.current.style.top = `-${Number(this.headerFixed.current.offsetHeight) + 100}px`;
+        }
+    };
+
+    componentDidMount() {
+        document.addEventListener('scroll', this.scrollHandler);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener('scroll', this.scrollHandler);
+    }
 
     render() {
         const {cart, like, poll} = this.state;
@@ -28,15 +47,15 @@ class Header extends Component {
                         <div className="container">
                             <div className="header__top">
                                 <div className="header__social-block social-block blocks">
-                                    <a href="#" className="social-block__link">
+                                    <Link to={'/'} className="social-block__link">
                                         <Icon iconName={'fab fa-instagram'} className={'social-block__icon'} />
-                                    </a>
-                                    <a href="#" className="social-block__link">
+                                    </Link>
+                                    <Link to={'/'} className="social-block__link">
                                         <Icon iconName={'fab fa-facebook-f'} className={'social-block__icon'} />
-                                    </a>
-                                    <a href="#" className="social-block__link">
+                                    </Link>
+                                    <Link to={'/'} className="social-block__link">
                                         <Icon iconName={'fab fa-pinterest-p'} className={'social-block__icon'} />
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="header__currency-block currency-block blocks">
                                     <Selector className={'currency-block__selector'} value={'RUB'} options={['RUB', 'USD', 'EUR']} onChange={(v) => console.log(v)} />
@@ -52,10 +71,10 @@ class Header extends Component {
 
                             <div className="header__logo-block logo-block blocks">
                                 <div className="logo-block__logo">
-                                    <a href="/">
+                                    <Link to={'/'}>
                                         <img className="lazy" data-srcset="img/logo.svg" data-src="img/logo.svg"
                                             alt="UShop" draggable="false"/>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
 
@@ -74,47 +93,22 @@ class Header extends Component {
 
                                 <div className="user-block__row">
                                     <div className="user-block__action user-action">
-
-                                        <div className="dropdown dropdown-noicon">
-                                            <div className="dropdown__head">
-                                                <span className="dropdown__head-text">
-                                                    <a href="#" className="button">
-                                                        <Icon iconName={'fal fa-user'} className={'button__icon user-action__icon'} />
-                                                        <span className="user-action__name">мой кабинет</span>
-                                                    </a>
-                                                </span>
-                                                <Icon iconName={'fas fa-caret-down'} className={'dropdown__head-dropdown-icon'} />
-                                            </div>
-                                            <div className="dropdown__wrap">
-                                                <div className="dropdown__wrap-body wrap-body">
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-user'} className={'button__icon'} />Мой кабинет</a></div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-luggage-cart'} className={'button__icon'} />Текущие заказы</a>
-                                                    </div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-file-invoice-dollar'} className={'button__icon'} />Личный счет</a></div>
-                                                    <div className="dropdown__element"><a className="button" href="#"><i className="fal fa-database button__icon"/>Личные данные</a>
-                                                    </div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-key'} className={'button__icon'} />Сменить пароль</a></div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-history'} className={'button__icon'} />История заказов</a>
-                                                    </div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-user-chart'} className={'button__icon'} />Профили заказов</a></div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-shopping-cart'} className={'button__icon'} />Корзина</a>
-                                                    </div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-address-book'} className={'button__icon'} />Контакты</a>
-                                                    </div>
-                                                    <div className="dropdown__element"><a className="button" href="#">
-                                                        <Icon iconName={'fal fa-sign-out-alt'} className={'button__icon'} />Выйти</a></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        <Dropdown
+                                            isChange={false}
+                                            value={ <Link className="button" to={'/'}><Icon iconName={'fal fa-user'} className={'button__icon'} />Мой кабинет</Link>}
+                                            options={[
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-user'} className={'button__icon'} />Мой кабинет</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-luggage-cart'} className={'button__icon'} />Текущие заказы</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-file-invoice-dollar'} className={'button__icon'} />Личный счет</Link>,
+                                                <Link className="button" to={'/'}><i className="fal fa-database button__icon"/>Личные данные</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-key'} className={'button__icon'} />Сменить пароль</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-history'} className={'button__icon'} />История заказов</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-user-chart'} className={'button__icon'} />Профили заказов</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-shopping-cart'} className={'button__icon'} />Корзина</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-address-book'} className={'button__icon'} />Контакты</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-sign-out-alt'} className={'button__icon'} />Выйти</Link>
+                                            ]}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +118,7 @@ class Header extends Component {
                 </div>
 
                 <div className="header">
-                    <div className="header__fixed">
+                    <div className="header__fixed" ref={this.headerFixed}>
                         <div className="container">
                             <div className="header__row">
 
@@ -146,10 +140,10 @@ class Header extends Component {
 
                                 <div className="header__logo-block logo-block blocks">
                                     <div className="logo-block__logo">
-                                        <a href="/">
+                                        <Link to={'/'}>
                                             <img className="lazy" data-src="img/logo.svg" data-srcset="img/logo.svg"
                                                 alt="UShop" draggable="false" />
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -172,9 +166,9 @@ class Header extends Component {
                                             <div className="dropdown dropdown-noicon">
                                                 <div className="dropdown__head">
                                                     <span className="dropdown__head-text">
-                                                        <a href="#" className="button" title="Мой кабинет">
+                                                        <Link to={'/'} className="button" title="Мой кабинет">
                                                             <Icon iconName={'fal fa-user'} className={'button__icon user-action__icon'} />
-                                                        </a>
+                                                        </Link>
                                                     </span>
                                                     <Icon iconName={'fas fa-caret-down'} className={'dropdown__head-dropdown-icon'} />
                                                 </div>
