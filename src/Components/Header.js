@@ -100,7 +100,7 @@ class Header extends Component {
                                                 <Link className="button" to={'/'}><Icon iconName={'fal fa-user'} className={'button__icon'} />Мой кабинет</Link>,
                                                 <Link className="button" to={'/'}><Icon iconName={'fal fa-luggage-cart'} className={'button__icon'} />Текущие заказы</Link>,
                                                 <Link className="button" to={'/'}><Icon iconName={'fal fa-file-invoice-dollar'} className={'button__icon'} />Личный счет</Link>,
-                                                <Link className="button" to={'/'}><i className="fal fa-database button__icon"/>Личные данные</Link>,
+                                                <Link className="button" to={'/'}><Icon iconName={'fal fa-database'} className={'button__icon'}/>Личные данные</Link>,
                                                 <Link className="button" to={'/'}><Icon iconName={'fal fa-key'} className={'button__icon'} />Сменить пароль</Link>,
                                                 <Link className="button" to={'/'}><Icon iconName={'fal fa-history'} className={'button__icon'} />История заказов</Link>,
                                                 <Link className="button" to={'/'}><Icon iconName={'fal fa-user-chart'} className={'button__icon'} />Профили заказов</Link>,
