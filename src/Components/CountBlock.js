@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, lazy, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from "./Icon";
+const Icon = lazy(() => import("./Icon"));
 import {Link} from "react-router-dom";
+import Loading from "./Loading";
 
 class CountBlock extends Component {
     constructor(props) {
@@ -25,13 +26,15 @@ class CountBlock extends Component {
         const {value} = this.state;
 
         return (
-            <div className={classNames(className, 'count-block blocks')}>
-                <Link className="count-block__row" to={href}>
-                    {icon || null}
-                    <span className="count-block__title" aria-hidden="true">{name}</span>
-                    <span className={classNames('count-block__count', value.toString().trim().length >= 3 ? 'count-block__count-big' : '')}>{value}</span>
-                </Link>
-            </div>
+            <Suspense fallback={<Loading/>}>
+                <div className={classNames(className, 'count-block blocks')}>
+                    <Link className="count-block__row" to={href}>
+                        {icon || null}
+                        <span className="count-block__title" aria-hidden="true">{name}</span>
+                        <span className={classNames('count-block__count', value.toString().trim().length >= 3 ? 'count-block__count-big' : '')}>{value}</span>
+                    </Link>
+                </div>
+            </Suspense>
         );
     }
 }

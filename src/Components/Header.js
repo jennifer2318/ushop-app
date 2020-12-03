@@ -1,11 +1,14 @@
-import React, {Component} from 'react';
+import React, {Component, lazy} from 'react';
 import PropTypes from 'prop-types';
-import Icon from "./Icon";
-import Selector from "./Selector";
-import CountBlock from "./CountBlock";
-import Field from "./Field";
+
+const Icon = lazy(() => import("./Icon"));
+const Selector = lazy(() => import("./Selector"));
+const CountBlock = lazy(() => import("./CountBlock"));
+const Field = lazy(() => import("./Field"));
+const Dropdown = lazy(() => import("./Dropdown"));
+const LazyImage = lazy(() => import("./LazyImage"));
+
 import {Link} from "react-router-dom";
-import Dropdown from "./Dropdown";
 
 class Header extends Component {
     constructor(props) {
@@ -15,6 +18,7 @@ class Header extends Component {
             cart: 99,
             like: 200,
             poll: 0,
+            search: '',
         };
 
         this.headerFixed = React.createRef();
@@ -26,6 +30,12 @@ class Header extends Component {
         }else {
             this.headerFixed.current.style.top = `-${Number(this.headerFixed.current.offsetHeight) + 100}px`;
         }
+    };
+
+    searchHandler = obj => {
+        this.setState({
+            search: obj.value,
+        });
     };
 
     componentDidMount() {
@@ -72,14 +82,13 @@ class Header extends Component {
                             <div className="header__logo-block logo-block blocks">
                                 <div className="logo-block__logo">
                                     <Link to={'/'}>
-                                        <img className="lazy" data-srcset="img/logo.svg" data-src="img/logo.svg"
-                                            alt="UShop" draggable="false"/>
+                                        <LazyImage width={177} height={30} src={"assets/img/logo.svg"} alt={'UShop'}/>
                                     </Link>
                                 </div>
                             </div>
 
                             <div className="header__search-block search-block blocks">
-                                <Field type={'search'} className={'search__block-search'} placeholder={'Поиск'} onChange={(v) => console.log(v)} id={'search'} value={''} name={'search'} btn={
+                                <Field type={'search'} className={'search__block-search'} placeholder={'Поиск'} onChange={this.searchHandler} id={'search'} value={this.state.search} name={'search'} btn={
                                     <button className="search__button button" type="button">
                                         <Icon className={'search__button-icon'} iconName={'far fa-search'} />
                                     </button>} />
@@ -141,14 +150,13 @@ class Header extends Component {
                                 <div className="header__logo-block logo-block blocks">
                                     <div className="logo-block__logo">
                                         <Link to={'/'}>
-                                            <img className="lazy" data-src="img/logo.svg" data-srcset="img/logo.svg"
-                                                alt="UShop" draggable="false" />
+                                            <LazyImage width={177} height={30} src={"assets/img/logo.svg"} alt={'UShop'}/>
                                         </Link>
                                     </div>
                                 </div>
 
                                 <div className="header__search-block search-block blocks">
-                                    <Field type={'search'} className={'search__block-search'} placeholder={'Поиск'} onChange={(v) => console.log(v)} id={'search'} value={''} name={'search'} btn={
+                                    <Field type={'search'} className={'search__block-search'} placeholder={'Поиск'} onChange={this.searchHandler} id={'search'} value={this.state.search} name={'search'} btn={
                                         <button className="search__button button" type="button">
                                             <Icon className={'search__button-icon'} iconName={'far fa-search'} />
                                         </button>} />

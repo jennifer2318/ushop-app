@@ -27,6 +27,21 @@ class Field extends Component {
         this.setValue(value);
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        let isChange = false;
+        const {value, locked} = this.props;
+
+        if (prevProps.value !== value) {
+            isChange = true;
+        }
+
+        if (prevProps.locked !== locked) {
+            isChange = true;
+        }
+
+        if (isChange) this.setState({value, locked});
+    }
+
     changeHandler = e => {
         const {target} = e;
         const value = target.value;

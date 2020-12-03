@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, lazy, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from "./Icon";
+import Loading from "./Loading";
+
+const Icon = lazy(() => import("./Icon"));
 
 class Dropdown extends Component {
     constructor(props) {
@@ -54,23 +56,25 @@ class Dropdown extends Component {
         const {value, active} = this.state;
 
         return (
-            <div className={classNames('dropdown', icon || 'dropdown-noicon', !active || 'dropdown-active')} onMouseOver={this.mouseOverHandler} onMouseLeave={this.mouseLeaveHandler}>
-                <div className="dropdown__head">
-                    <span className="dropdown__head-text">
-                        {value}
-                    </span>
-                    <Icon iconName={'fas fa-caret-down'} className={'dropdown__head-dropdown-icon'} />
-                </div>
-                <div className="dropdown__wrap" style={active ? {opacity: 1, transform: 'scaleY(1)'} : {opacity: 0, transform: 'scaleY(0)'}}>
-                    <div className="dropdown__wrap-body wrap-body">
-                        {
-                            options.map((v, k) => {
-                                return (<div key={k} className="dropdown__element" val={k} onClick={this.clickHandler}>{v}</div>);
-                            })
-                        }
+            <Suspense fallback={<Loading/>}>
+                <div className={classNames('dropdown', icon || 'dropdown-noicon', !active || 'dropdown-active')} onMouseOver={this.mouseOverHandler} onMouseLeave={this.mouseLeaveHandler}>
+                    <div className="dropdown__head">
+                        <span className="dropdown__head-text">
+                            {value}
+                        </span>
+                        <Icon iconName={'fas fa-caret-down'} className={'dropdown__head-dropdown-icon'} />
+                    </div>
+                    <div className="dropdown__wrap" style={active ? {opacity: 1, transform: 'scaleY(1)'} : {opacity: 0, transform: 'scaleY(0)'}}>
+                        <div className="dropdown__wrap-body wrap-body">
+                            {
+                                options.map((v, k) => {
+                                    return (<div key={k} className="dropdown__element" val={k} onClick={this.clickHandler}>{v}</div>);
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Suspense>
         );
     }
 }
@@ -81,7 +85,7 @@ Dropdown.defaultProps = {
 
 Dropdown.propTypes = {
     icon: PropTypes.element,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.any.isRequired,
     options: PropTypes.array.isRequired,
     onChange: PropTypes.func,
     isChange: PropTypes.bool,

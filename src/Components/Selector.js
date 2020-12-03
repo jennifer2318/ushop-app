@@ -1,7 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, lazy, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from "./Icon";
+import Loading from "./Loading";
+
+const Icon = lazy(() => import("./Icon"));
 
 class Selector extends Component {
 
@@ -51,27 +53,29 @@ class Selector extends Component {
         }
 
         return (
-            <div className={classNames(className, "selector", focused === true ? 'focused' : '')} tabIndex="-1" onFocus={this.focusHandler} onBlur={this.blurHandler}>
-                <div className="selector__head">
-                    <div className="selector__active">
-                        {
-                            value
-                        }
+            <Suspense fallback={<Loading/>}>
+                <div className={classNames(className, "selector", focused === true ? 'focused' : '')} tabIndex="-1" onFocus={this.focusHandler} onBlur={this.blurHandler}>
+                    <div className="selector__head">
+                        <div className="selector__active">
+                            {
+                                value
+                            }
+                        </div>
+                        <Icon iconName={'fas fa-caret-down'} className={'selector__icon'} />
                     </div>
-                    <Icon iconName={'fas fa-caret-down'} className={'selector__icon'} />
-                </div>
-                <div className="selector__options" style={focused === true ? {opacity: 1, transform: 'scaleY(1)'} : {opacity: 0, transform: 'scaleY(0)'}}>
-                    <div className="selector__body">
-                        {
-                            options.map((v, k) => {
-                                return (
-                                    <div key={k} onClick={this.clickHandler} className={classNames('option', value === v ? 'selected' : '')}>{v}</div>
-                                );
-                            })
-                        }
+                    <div className="selector__options" style={focused === true ? {opacity: 1, transform: 'scaleY(1)'} : {opacity: 0, transform: 'scaleY(0)'}}>
+                        <div className="selector__body">
+                            {
+                                options.map((v, k) => {
+                                    return (
+                                        <div key={k} onClick={this.clickHandler} className={classNames('option', value === v ? 'selected' : '')}>{v}</div>
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Suspense>
         );
     }
 }
