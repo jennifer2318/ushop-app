@@ -2,11 +2,13 @@ import React, {Component, lazy, Suspense} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import { withTranslation } from 'react-i18next';
-const Section = lazy(() => import("../Section"));
 import {Link} from "react-router-dom";
-import Slider from "../Slider";
-import LazyImage from "../LazyImage";
+
+const Section = lazy(() => import("../Section"));
 const Icon = lazy(() => import("../Icon"));
+const Slider = lazy(() => import("../Slider"));
+const LazyImage = lazy(() => import("../LazyImage"));
+const SliderBanner = lazy(() => import("../SliderBanner"));
 
 class Home extends Component {
     componentDidMount() {
@@ -33,82 +35,36 @@ class Home extends Component {
                 </Section>
                 <Section className='section-slider' container='container-fluid'>
                     <Slider className='main-page-slider' type={'opacity'} auto={true} dots={true} options={[
-                        <div className="banner banner-main lazy-background" style={{backgroundImage: 'url(/assets/img/0.2.jpg)'}}>
-                            <div className="container banner__container">
-                                <div className="banner__content action-event">
-                                    <div className="action-event__subtitle">
-                                        Электроника
-                                    </div>
-                                    <div className="action-event__title">
-                                        Надежная техника
-                                    </div>
-                                    <div className="action-event__content">
-                                        Смартфоны, игровые приставки, HD-телевизоры и аудиосистемы для технологичной
-                                        жизни. Покупайте электронику в интернет-магазине по выгодным ценам: проводные
-                                        наушники от 300 р.
-                                    </div>
-                                    <div className="action-event__action">
-                                        <Link to="#" className="button btn-accent btn-catalog">перейти в каталог</Link>
-                                    </div>
-                                </div>
-                                <div className="banner__wrap">
-                                    <div className="banner__image">
-                                        <LazyImage src={'/assets/img/0.1.png'}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>,
-                        <div className="banner banner-main lazy-background" style={{backgroundImage: 'url(/assets/img/1.1.jpg)'}}>
-                            <div className="container banner__container">
-                                <div className="banner__content action-event">
-                                    <div className="action-event__subtitle">
-                                        Транспорт
-                                    </div>
-                                    <div className="action-event__title">
-                                        Мотоциклы
-                                    </div>
-                                    <div className="action-event__content">
-                                        Стильный дизайн, отличная управляемость, литые диски и плавные линии притягивают
-                                        взгляды. Почувствуйте полную свободу и будьте уверены на дороге. Выберите свой
-                                        идеальный мотоцикл!
-                                    </div>
-                                    <div className="action-event__action">
-                                        <Link to="#" className="button btn-accent btn-catalog">выбрать мотоцикл</Link>
-                                    </div>
-                                </div>
-                                <div className="banner__wrap">
-                                    <div className="banner__image">
-                                        <LazyImage src={'/assets/img/1.2.png'}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>,
-                        <div className="banner banner-main lazy-background" style={{backgroundImage: 'url(/assets/img/2.2.jpg)'}}>
-                            <div className="container banner__container">
-                                <div className="banner__content action-event">
-                                    <div className="action-event__subtitle">
-                                        Одежда
-                                    </div>
-                                    <div className="action-event__title">
-                                        Изящные образы <br/> на каждый день
-                                    </div>
-                                    <div className="action-event__content">
-                                        Комфорт может притягивать взгляды и быть стильным. Подбирайте удобную одежду для
-                                        повседневной жизни в каталоге: легкие платья, футболки с принтами или брюки для
-                                        прогулок
-                                    </div>
-                                    <div className="action-event__action">
-                                        <Link to="#" className="button btn-accent btn-catalog">женская одежда</Link>
-                                        <Link to="#" className="button btn-catalog">аксессуары</Link>
-                                    </div>
-                                </div>
-                                <div className="banner__wrap">
-                                    <div className="banner__image">
-                                        <LazyImage src={'/assets/img/2.1.png'}/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <SliderBanner
+                            backgroundImage='/assets/img/0.2.jpg'
+                            subtitle='Электроника'
+                            title='Электроника'
+                            content='Смартфоны, игровые приставки, HD-телевизоры и аудиосистемы для технологичной
+                                     жизни. Покупайте электронику в интернет-магазине по выгодным ценам: проводные
+                                     наушники от 300 р.'
+                            image='/assets/img/0.1.png'
+                            action={<Link to="#" className="button btn-accent btn-catalog">перейти в каталог</Link>}
+                        />,
+                        <SliderBanner
+                            backgroundImage='/assets/img/1.1.jpg'
+                            subtitle='Транспорт'
+                            title='Мотоциклы'
+                            content='Стильный дизайн, отличная управляемость, литые диски и плавные линии притягивают
+                                     взгляды. Почувствуйте полную свободу и будьте уверены на дороге. Выберите свой
+                                     идеальный мотоцикл!'
+                            image='/assets/img/1.2.png'
+                            action={<Link to="#" className="button btn-accent btn-catalog">выбрать мотоцикл</Link>}
+                        />,
+                        <SliderBanner
+                            backgroundImage='/assets/img/2.2.jpg'
+                            subtitle='Одежда'
+                            title={<>Изящные образы <br/> на каждый день</>}
+                            content='Комфорт может притягивать взгляды и быть стильным. Подбирайте удобную одежду для
+                                     повседневной жизни в каталоге: легкие платья, футболки с принтами или брюки для
+                                     прогулок'
+                            image='/assets/img/2.1.png'
+                            action={<><Link to="#" className="button btn-accent btn-catalog">женская одежда</Link><Link to="#" className="button btn-catalog">аксессуары</Link></>}
+                        />
                     ]}/>
                 </Section>
             </>

@@ -29,6 +29,7 @@ class Slider extends Component {
     }
 
     componentDidMount() {
+        const {auto} = this.state;
         const container = this.containerRef.current;
 
         if (container === null) return;
@@ -38,6 +39,10 @@ class Slider extends Component {
 
             container.addEventListener('touchstart', this.touchstartHandler, {passive: true});
             container.addEventListener('mousedown', this.touchstartHandler, {passive: true});
+
+            if (auto) {
+                this.interval();
+            }
 
             this.setState({
                 posThreshold: width * 0.15,
@@ -227,12 +232,9 @@ class Slider extends Component {
     };
 
     setSlide = (key) => {
-        const {activeItem, animId1} = this.state;
+        const {activeItem} = this.state;
 
         if (activeItem === key) return;
-
-        clearTimeout(animId1);
-        this.interval();
 
         this.setState({
             last: activeItem,
