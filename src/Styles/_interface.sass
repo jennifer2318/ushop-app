@@ -1,13 +1,19 @@
-body::-webkit-scrollbar-track
-	box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+*::-webkit-scrollbar-track
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.1)
 	background-color: #F5F5F5
 
-body::-webkit-scrollbar
+*::-webkit-scrollbar
 	width: 8px
 	background-color: #F5F5F5
 
-body::-webkit-scrollbar-thumb
+*::-webkit-scrollbar-thumb
 	background-color: rgba($accent, 1)
+
+.cls-1, .cls-2
+	fill: rgba($accent, 1)
+	fill-rule: evenodd
+.cls-2
+	opacity: .1
 
 .lds-ring
 	display: inline-block
@@ -600,7 +606,7 @@ a
 				&__item.active
 					.image-selector__item-nav
 						&::after
-							background: rgba($white, 1)
+							background: rgba($accent, 1)
 					img
 						opacity: 1
 		.item__info

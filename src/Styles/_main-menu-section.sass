@@ -3,6 +3,7 @@
     padding-bottom: 15px
 
 .menu
+    position: relative
     &__container
         padding: 0
         margin: 0
@@ -14,6 +15,9 @@
         margin: 0 15px
         border-radius: 3px
         user-select: none
+        position: relative
+    &__element-pos
+        position: unset
     &__link
         padding: 6px 25px
         display: flex
@@ -30,3 +34,85 @@
             color: rgba($accent, 1)
         &-icon
             margin-right: 8px
+    &__submenu
+        position: absolute
+        left: 0
+        top: calc(100% + 5px)
+        width: 100%
+        z-index: 8
+        opacity: 0
+        transition: .425s ease
+        visibility: hidden
+        overflow: unset
+        box-shadow: 0 2px 25px 0 rgba(0, 0, 0, 0.125)
+        padding: 10px
+        background: rgba($white, 1)
+        &.active
+            opacity: 1
+            visibility: visible
+        &:before
+            content: ''
+            position: absolute
+            top: -7px
+            left: 50%
+            width: 15px
+            height: 15px
+            background: rgba($white, 1)
+            box-shadow: 0 -2px 25px 0 rgba(0, 0, 0, 0.1)
+            transform: rotate(45deg)
+            border-top: 1px solid rgba($greyDark, .25)
+            border-left: 1px solid rgba($greyDark, .25)
+            user-select: none
+            pointer-events: none
+    .submenu
+        &__container
+            display: flex
+            z-index: 8
+            height: 100%
+            position: relative
+        &__content
+            display: flex
+            flex: 1 1 auto
+            height: 100%
+            position: relative
+            overflow-y: auto
+            padding: 0 15px
+            &::-webkit-scrollbar
+                width: 4px
+            &-item
+                transition: .05s ease-out
+                visibility: hidden
+                &.active
+                    visibility: visible
+        &__content-left
+            width: 15%
+            flex: 0 1 15%
+            display: flex
+            padding-right: 15px
+            border-right: 1px solid rgba($greyB8, .5)
+            padding-left: 0
+        &__element
+            font-size: 13px
+        &__link
+            display: flex
+            padding: 10px 15px 10px 5px
+            position: relative
+        &__icon
+            font-size: 10px
+            position: absolute
+            right: 0
+            top: 50%
+            transform: translateY(-50%)
+    .catalog-submenu
+        max-height: 480px
+        height: 480px
+        &:before
+            left: 8.5vw
+        .submenu__content-left
+            ul, ol
+                margin: 0
+                padding: 0
+                width: 100%
+                height: 100%
+                li
+                    list-style: none
