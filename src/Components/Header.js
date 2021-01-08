@@ -131,21 +131,13 @@ class Header extends Component {
                         <div className="container">
                             <div className="header__row">
 
-                                <div className="header__mobile-menu mobile-menu" js-popup="popup__main-menu">
+                                <div className="header__mobile-menu mobile-menu">
                                     <div className="mobile-menu__icon">
                                         <span/>
                                         <span/>
                                         <span/>
                                     </div>
                                 </div>
-
-                                {/*<div class="header__mobile-menu mobile-menu">*/}
-                                {/*    <div class="mobile-menu__icon">*/}
-                                {/*        <span></span>*/}
-                                {/*        <span></span>*/}
-                                {/*        <span></span>*/}
-                                {/*    </div>*/}
-                                {/*</div> */}
 
                                 <div className="header__logo-block logo-block blocks">
                                     <div className="logo-block__logo">
@@ -180,18 +172,14 @@ class Header extends Component {
                                                     </span>
                                                     <Icon iconName={'fas fa-caret-down'} className={'dropdown__head-dropdown-icon'} />
                                                 </div>
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
-
             </header>
         );
     }

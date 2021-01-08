@@ -4,10 +4,13 @@ import classNames from 'classnames';
 
 class Section extends Component {
     render() {
-        const {className, children, container} = this.props;
+        const {className, children, container, sectionTop} = this.props;
 
         return (
             <section className={classNames('section', className)}>
+                {
+                    sectionTop ? <div className="container section__top">{sectionTop}</div> : null
+                }
                 <div className={container}>
                     {
                         children
@@ -23,9 +26,10 @@ Section.defaultProps = {
 };
 
 Section.propTypes = {
-    children: PropTypes.element,
+    children: PropTypes.node,
     className: PropTypes.string,
     container: PropTypes.string,
+    sectionTop: PropTypes.node,
 };
 
 export default Section;
