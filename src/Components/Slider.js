@@ -303,7 +303,7 @@ Slider.defaultProps = {
 };
 
 Slider.propTypes = {
-    options: PropTypes.array.isRequired,
+    options: PropTypes.arrayOf(PropTypes.element).isRequired,
     className: PropTypes.string,
     time: PropTypes.number,
     auto: PropTypes.bool,

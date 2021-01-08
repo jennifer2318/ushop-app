@@ -63,8 +63,8 @@ class SliderBanner extends Component {
 
 SliderBanner.propTypes = {
     backgroundImage: PropTypes.string,
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
+    title: PropTypes.node,
+    subtitle: PropTypes.node,
     content: PropTypes.node,
     action: PropTypes.node,
     image: PropTypes.string,
